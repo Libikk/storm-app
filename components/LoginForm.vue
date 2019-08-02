@@ -1,19 +1,23 @@
 <template>
       <v-card class="login-form">
-        <v-text-field
-          label="Login"
-          type="text"
-          value="StormTest"
-        />
-        <v-text-field
-          label="Password"
-          type="password"
-          value="-!NmmQR2pbmJSQ7"
-        />
-        <button @click="postLogin">
-          login
-        </button>
-        <p>The credentials are not verified for the example purpose.</p>
+        <header class="login-form__header">
+          <img src="~/assets/padlock.png"/>
+        </header>
+        <body class="login-form__body">
+          <v-text-field
+            label="Login"
+            type="text"
+            value="StormTest"
+          />
+          <v-text-field
+            label="Password"
+            type="password"
+            value="-!NmmQR2pbmJSQ7"
+          />
+          <v-btn class="global-button__primary" @click="postLogin">
+            login
+          </v-btn>
+        </body>
     </v-card>
 </template>
 
@@ -44,7 +48,19 @@ export default {
 
 <style lang="scss" scoped>
 .login-form {
-  max-width: 500px;
+  margin: 20px auto;
+  align-items: center;
+  padding: 35px;
+  max-width: 370px;
+
+  .login-form__header {
+    img {
+      width: 100%;
+    }
+  }
+  .login-form__body {
+    margin: 20px 0;
+  }
 
 }
 </style>
