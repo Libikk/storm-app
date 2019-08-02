@@ -17,11 +17,10 @@
                     </v-list-item>
                 </v-list>
             </v-menu>
+            <v-dialog class="app-bar__modal"  v-model="isModalOpen">
+                <LoginForm :toggleModal="toggleModal"/>
+            </v-dialog>
         </div>
-        <button @click="test">test state</button>
-        <v-dialog  v-model="isModalOpen">
-            <LoginForm :toggleModal="toggleModal"/>
-        </v-dialog>
     </v-app-bar>
 </template>
 
@@ -54,19 +53,24 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-.app-bar {
+<style lang="scss">
+.app-bar  {
     max-height: 120px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
 
-    &__logo {
-        width: 115px;
+    .v-toolbar__content {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
     }
 
-    &__menu {
+    &__logo {
+        width: 200px;
+    }
 
+    .app-bar__modal {
+        width: fit-content;
     }
 
 }

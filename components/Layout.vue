@@ -1,7 +1,7 @@
 <template>
   <v-app id="inspire">
     <Header />
-        <v-content>
+        <v-content class="content">
             <slot/>
         </v-content>
     <Footer/>
@@ -38,6 +38,11 @@ export default {
     :hover {
         color: $red;
     }
+}
+
+.content {
+    display: flex;
+    justify-items: center;
 }
 
 </style>
