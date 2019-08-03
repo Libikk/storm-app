@@ -23,6 +23,7 @@
 
 <script>
 
+import AuthService from '../api/authService';
 const Cookie = process.client ? require('js-cookie') : undefined
 
 export default {
