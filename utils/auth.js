@@ -14,7 +14,7 @@ export const authUser = (requestToken) => {
 
     if (isValid && requestToken) {
         var { primarysid, unique_name } = jwt.decode(requestToken, { complete: true }).payload
-        var user = userCollection.find(({ id, name }) => id === primarysid && name === unique_name )
+        var user = userCollection.find(({ id, userLogin }) => id === Number(primarysid) && userLogin === unique_name);
         if (user) {
             return { name: user.name, id: user.id };
         }
