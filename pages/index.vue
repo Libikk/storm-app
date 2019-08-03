@@ -1,18 +1,17 @@
 <template>
   <div>
     <Layout>
-      <div>
-        <div v-if="$store.state.auth">
+      <div class="index-page">
+        <span v-if="$store.state.auth">
             You are login as {{ $store.state.auth.name }}
-        </div>
-        <span v-else>You are logged off.</span>
-
+        </span>
       </div>
     </Layout>
   </div>
 </template>
 
 <script>
+
 import Layout from '../components/Layout';
 import { getCookie, authUser } from '../utils/auth';
 const Cookie = process.client ? require('js-cookie') : undefined
@@ -40,3 +39,12 @@ export default {
     }),
 }
 </script>
+
+<style lang="scss" scoped>
+.index-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+</style>
+

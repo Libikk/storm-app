@@ -28,7 +28,14 @@ const Cookie = process.client ? require('js-cookie') : undefined
 
 export default {
   props: {
-    toggleModal: Function
+    toggleModal: {
+      type: Function,
+      default: null,
+    },
+    isLoginPage: {
+      type: Boolean,
+      default: false
+    }
   },
   middleware: 'notAuthenticated',
   data: () => ({
@@ -36,13 +43,17 @@ export default {
     password: '-!NmmQR2pbmJSQ7'
   }),
   methods: {
+    redirectToLandingPage() {
+        this.$router.push('/');
+    },
     async postLogin() {
       const { userName, password } = this
       const response = await AuthService.login({ userName, password }).catch(console.error)
       if (response) {
         this.$store.commit('setAuth', response) // mutating to store for client rendering
         Cookie.set('auth', response.auth_token) // saving token in cookie for server rendering
-        this.toggleModal()
+        this.toggleModal && this.toggleModal()
+        if (this.isLoginPage) this.redirectToLandingPage();
       }
     },
   }

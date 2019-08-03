@@ -1,6 +1,6 @@
 <template>
   <Layout>
-    <LoginForm />
+    <LoginForm :is-login-page="true" />
   </Layout>
 </template>
 

@@ -1,14 +1,19 @@
 <template>
     <v-app-bar class="app-bar">
         <div>
-            <img src="~/assets/StormLogo.png" class="app-bar__logo">
+            <NuxtLink to="/">
+                <img src="~/assets/StormLogo.png" class="app-bar__logo">
+            </NuxtLink>
+             <NuxtLink to="/employees">
+                Employees
+            </NuxtLink>
         </div>
         <div class="app-bar__menu">
             <v-btn v-if="!$store.state.auth" @click="toggleModal" class="global-button__primary">Login</v-btn>
             <v-menu v-else offset-y>
                 <template v-slot:activator="{ on }">
                     <v-avatar color="indigo" size="45" v-bind="attrs" v-on="on">
-                        <span class="white--text headline">CJ</span>
+                        <span class="white--text headline">{{ $store.state.auth.name[0] }}</span>
                     </v-avatar>
                 </template>
                 <v-list>
