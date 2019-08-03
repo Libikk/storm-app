@@ -43,10 +43,21 @@ export default {
    */
   modules: [
     "@nuxtjs/vuetify",
+    '@nuxtjs/axios',
+    '@nuxtjs/proxy',
     // TODO: Remove it if you want to eject from codeSandbox
   ],
-
-  // Doc: https://github.com/nuxt-community/vuetify-module
+  axios: {
+    proxy: true,
+  },
+  proxy: {
+    '/api/': {
+      target: 'https://backend-dev.storm-technologies.com/sandbox/v1',
+      pathRewrite: {
+        '^/api': ''
+      }
+    },
+  },
   vuetify: {
     customVariables: ["~/assets/variables.scss"],
     theme: {
