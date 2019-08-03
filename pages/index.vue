@@ -3,7 +3,7 @@
     <Layout>
       <div>
         <div v-if="$store.state.auth">
-            You are login as {{ $store.state.auth }}
+            You are login as {{ $store.state.auth.name }}
         </div>
         <span v-else>You are logged off.</span>
 
