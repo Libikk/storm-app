@@ -7,12 +7,12 @@
           <v-text-field
             label="Login"
             type="text"
-            value="StormTest"
+            :value="userName"
           />
           <v-text-field
             label="Password"
             type="password"
-            value="-!NmmQR2pbmJSQ7"
+            :value="password"
           />
           <v-btn class="global-button__primary" @click="postLogin">
             login
@@ -31,17 +31,19 @@ export default {
     toggleModal: Function
   },
   middleware: 'notAuthenticated',
+  data: () => ({
+    userName: 'StormTest',
+    password: '-!NmmQR2pbmJSQ7'
+  }),
   methods: {
-    postLogin () {
-      setTimeout(() => { // we simulate the async request with timeout.
-        const auth = {
-          accessToken: 'someStringGotFromApiServiceWithAjax'
-        }
+    postLogin() {
+      const { userName, password } = this
+      AuthService.login({ userName, password }).then(res => {
+        this.$store.commit('setAuth', res) // mutating to store for client rendering
+        Cookie.set('auth', res.auth_token) // saving token in cookie for server rendering
         this.toggleModal()
-        this.$store.commit('setAuth', auth) // mutating to store for client rendering
-        Cookie.set('auth', auth) // saving token in cookie for server rendering
-        this.$router.push('/')
-      }, 1000)
+      })
+      .catch(console.error)
     },
   }
 }
