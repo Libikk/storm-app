@@ -36,14 +36,14 @@ export default {
     password: '-!NmmQR2pbmJSQ7'
   }),
   methods: {
-    postLogin() {
+    async postLogin() {
       const { userName, password } = this
-      AuthService.login({ userName, password }).then(res => {
-        this.$store.commit('setAuth', res) // mutating to store for client rendering
-        Cookie.set('auth', res.auth_token) // saving token in cookie for server rendering
+      const response = await AuthService.login({ userName, password }).catch(console.error)
+      if (response) {
+        this.$store.commit('setAuth', response) // mutating to store for client rendering
+        Cookie.set('auth', response.auth_token) // saving token in cookie for server rendering
         this.toggleModal()
-      })
-      .catch(console.error)
+      }
     },
   }
 }
