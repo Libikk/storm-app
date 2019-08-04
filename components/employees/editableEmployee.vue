@@ -52,7 +52,6 @@
             />
 
             <v-btn
-                :disabled="!valid"
                 color="success"
                 @click="updateClickHandler"
             >
@@ -72,10 +71,8 @@ export default {
             default: null
         }
     },
-    employeeData: null,
     data() {
         return {
-            valid: true,
             personData: {
                 first_Name: '',
                 last_Name: '',
@@ -109,13 +106,9 @@ export default {
             } else {
                 // not valid
             }
-
         },
     },
     computed: {
-        employeeDepartments() {
-            return this.$store.state.departments.map(e => ({  }))
-        }
     }
 }
 </script>
