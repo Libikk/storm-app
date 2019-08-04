@@ -42,10 +42,16 @@ export default {
   components: {
     Layout
   },
-  asyncData ({ req, res, store }) {
-    if (!store.state.employees.length) {
+  mounted() {
+    if (!this.$store.state.employees.length) {
+        // to do: move this to store init
+        this.isLoading = true
         EmployeesService.getListOfEmployees()
-          .then(res => store.commit('setEmployees', res.results))
+          .then(res => {
+            console.log('res: ', res);
+            this.$store.commit('setEmployees', res.results)
+          })
+          .finally(() => (this.isLoading = false))
     }
   },
   methods: {
