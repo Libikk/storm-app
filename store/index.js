@@ -1,4 +1,5 @@
 const cookieparser = process.server ? require('cookieparser') : undefined
+import { getCookie, authUser } from '../utils/auth';
 
 export const state = () => {
   return {
@@ -16,15 +17,11 @@ export const mutations = {
 }
 export const actions = {
   nuxtServerInit ({ commit }, { req }) {
-    let auth = null
-    if (req.headers.cookie) {
-      const parsed = cookieparser.parse(req.headers.cookie)
-      try {
-        auth = JSON.parse(parsed.auth)
-      } catch (err) {
-        // No valid cookie found
-      }
+    const cookie = req.headers.cookie;
+    if (cookie) {
+      const parsed = cookieparser.parse(cookie).auth
+      const personData = authUser(parsed);
+      commit('setAuth', personData)
     }
-    commit('setAuth', auth)
   }
 }

@@ -17,14 +17,6 @@ import { getCookie, authUser } from '../utils/auth';
 const Cookie = process.client ? require('js-cookie') : undefined
 
 export default {
-  asyncData ({ req, res, store }) {
-    const cookie = req && req.headers.cookie;
-    if (cookie) {
-      const accessToken = getCookie('auth', cookie);
-      const personData = authUser(accessToken);
-      store.commit('setAuth', personData)
-    }
-  },
   components: {
     Layout
   },

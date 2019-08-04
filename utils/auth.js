@@ -1,12 +1,6 @@
 const jwt = require('jsonwebtoken');
 import userCollection from '../assets/userCollection';
 
-export const getCookie = (name, cookie) => {
-    const escape = (s) => s.replace(/([.*+?\^${}()|\[\]\/\\])/g, '\\$1');
-    var match = cookie.match(RegExp('(?:^|;\\s*)' + escape(name) + '=([^;]*)'));
-    return match ? match[1] : null;
-}
-
 export const authUser = (requestToken) => {
     // verify cookie with secret key and check if it's not expired, jwt.verify(...)
     const isValid = true
