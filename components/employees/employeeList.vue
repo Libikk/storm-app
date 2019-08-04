@@ -40,22 +40,8 @@
 
 <script>
 
-import EmployeesService from '../../api/employeesService';
-
 export default {
   middleware: 'authenticated',
-  mounted() {
-    if (!this.$store.state.employees.length) {
-        // to do: move this to store init
-        this.isLoading = true
-        EmployeesService.getListOfEmployees()
-          .then(res => {
-            console.log('res: ', res);
-            this.$store.commit('setEmployees', res.results)
-          })
-          .finally(() => (this.isLoading = false))
-    }
-  },
   methods: {
     renderDepartments(departments) {
       return departments.map(e => e.employeeDepartment.description)
