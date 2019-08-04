@@ -25,6 +25,11 @@
                 </li>
               </ul>
             </template>
+            <template v-slot:item.action="{ item }">
+                <NuxtLink :to="'/employees/' + item.identifier" class="single-employee_edit-action">
+                   <img class="edit-icon" src="~assets/edit.svg" />
+                </NuxtLink>
+            </template>
           </v-data-table>
           </v-card>
           <NuxtLink :to="'/employees/31231232'">
@@ -77,6 +82,7 @@ export default {
         { text: 'Created at', value: 'createdDate' },
         { text: 'Departments', value: 'employeeDepartments' },
         { text: 'Status', value: 'isDeleted' },
+        { text: 'Action', value: 'action', sortable: false }
       ],
     }
   },
@@ -103,3 +109,9 @@ export default {
   },
 }
 </script>
+
+<style lang="scss">
+.edit-icon {
+    width: 25px;
+}
+</style>

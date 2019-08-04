@@ -45,6 +45,7 @@ export default {
     "@nuxtjs/vuetify",
     '@nuxtjs/axios',
     '@nuxtjs/proxy',
+    "nuxt-svg"
     // TODO: Remove it if you want to eject from codeSandbox
   ],
   axios: {
