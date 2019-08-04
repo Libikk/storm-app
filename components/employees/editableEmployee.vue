@@ -5,13 +5,11 @@
             v-model="valid"
             lazy-validation
         >
-
             <v-text-field
                 v-model="personData.identifier"
                 label="Identifier"
                 disabled
             />
-
             <v-text-field
                 v-model="personData.first_Name"
                 :counter="15"
@@ -19,7 +17,6 @@
                 required
                 :rules="nameRules"
             />
-
             <v-text-field
                 v-model="personData.last_Name"
                 :counter="15"
@@ -27,14 +24,12 @@
                 :rules="nameRules"
                 required
             />
-
             <v-text-field
                 v-model="personData.email"
                 label="Email"
                 :rules="emailRules"
                 required
             />
-
             <v-select
                 v-model="personData.departments"
                 :items="$store.state.departments"
@@ -50,8 +45,8 @@
                 item-text="label"
                 required
             />
-
             <v-btn
+                :disabled="!valid"
                 color="success"
                 @click="updateClickHandler"
             >
@@ -73,6 +68,7 @@ export default {
     },
     data() {
         return {
+            valid: true,
             personData: {
                 first_Name: '',
                 last_Name: '',
