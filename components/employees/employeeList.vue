@@ -1,5 +1,4 @@
 <template>
-  <Layout>
       <div>
         <v-card>
           <v-card-title>
@@ -28,20 +27,18 @@
             </template>
           </v-data-table>
           </v-card>
+          <NuxtLink :to="'/employees/31231232'">
+            test
+        </NuxtLink>
       </div>
-  </Layout>
 </template>
 
 <script>
 
-import Layout from '../components/Layout';
-import EmployeesService from '../api/employeesService';
+import EmployeesService from '../../api/employeesService';
 
 export default {
   middleware: 'authenticated',
-  components: {
-    Layout
-  },
   mounted() {
     if (!this.$store.state.employees.length) {
         // to do: move this to store init
@@ -69,18 +66,20 @@ export default {
       return String(convertedValue || propertyValue)
     },
   },
-  data: () => ({
-    search: '',
-    isLoading: false,
-    headers: [
-      { text: 'Identifier',  value: 'identifier' },
-      { text: 'Name', value: 'name' },
-      { text: 'Email', value: 'email' },
-      { text: 'Created at', value: 'createdDate' },
-      { text: 'Departments', value: 'employeeDepartments' },
-      { text: 'Status', value: 'isDeleted' },
-    ],
-  }),
+  data(){
+    return {
+      search: '',
+      isLoading: false,
+      headers: [
+        { text: 'Identifier',  value: 'identifier' },
+        { text: 'Name', value: 'name' },
+        { text: 'Email', value: 'email' },
+        { text: 'Created at', value: 'createdDate' },
+        { text: 'Departments', value: 'employeeDepartments' },
+        { text: 'Status', value: 'isDeleted' },
+      ],
+    }
+  },
   computed: {
     filteredEmployees() {
       return this.$store.state.employees.filter(singleEmp => {
