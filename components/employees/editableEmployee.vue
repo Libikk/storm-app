@@ -54,7 +54,7 @@
             <v-btn
                 :disabled="!valid"
                 color="success"
-                @click="updatePersonDetails"
+                @click="updateClickHandler"
             >
                 Update
             </v-btn>
@@ -63,8 +63,7 @@
 </template>
 
 <script>
-
-import EmployeesService from '../../api/employeesService';
+import { mapActions } from 'vuex';
 
 export default {
     props: {
@@ -101,9 +100,12 @@ export default {
         this.personData = Object.assign({}, personData, { departments: personDepartments })
     },
     methods: {
-        updatePersonDetails() {
+        ...mapActions([
+            'updatePersonDetails'
+        ]),
+        updateClickHandler() {
             if (this.$refs.form.validate()) {
-                EmployeesService.updateEmployeeDetails(details)
+                this.updatePersonDetails(this.personData)
             } else {
                 // not valid
             }

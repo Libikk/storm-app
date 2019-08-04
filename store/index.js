@@ -1,5 +1,6 @@
 const cookieparser = process.server ? require('cookieparser') : undefined
-import { getCookie, authUser } from '../utils/auth';
+import { authUser } from '../utils/auth';
+import EmployeesService from '../api/employeesService';
 
 export const state = () => {
   return {
@@ -35,4 +36,12 @@ export const actions = {
   departments({ commit }, departments) {
     commit('setDepartments', departments)
   },
+  updatePersonDetails() {
+    return EmployeesService.updateEmployeeDetails(this.personData)
+    .then(res => {
+      // to do update current state
+      console.log('res: ', res);
+    })
+    .catch(console.error)
+  }
 }
