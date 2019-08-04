@@ -2,9 +2,9 @@
   <div>
     <Layout>
       <div class="index-page">
-        <span v-if="$store.state.auth">
-            You are login as {{ $store.state.auth.name }}
-        </span>
+        <h1 v-if="$store.state.auth">
+            Welcome {{ $store.state.auth.name }}
+        </h1>
       </div>
     </Layout>
   </div>

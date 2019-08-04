@@ -1,5 +1,5 @@
 <template>
-      <div>
+      <div class="employee-list-container">
         <v-card>
           <v-card-title>
             Employees
@@ -32,9 +32,6 @@
             </template>
           </v-data-table>
           </v-card>
-          <NuxtLink :to="'/employees/31231232'">
-            test
-        </NuxtLink>
       </div>
 </template>
 
@@ -97,7 +94,12 @@ export default {
 </script>
 
 <style lang="scss">
-.edit-icon {
+.employee-list-container {
+
+  margin-top: 25px;
+
+  .edit-icon {
     width: 25px;
+  }
 }
 </style>

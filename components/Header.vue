@@ -1,11 +1,8 @@
 <template>
     <v-app-bar class="app-bar">
-        <div>
+        <div class="app-bar__nav-wrapper">
             <NuxtLink to="/">
-                <img src="~/assets/StormLogo.png" class="app-bar__logo">
-            </NuxtLink>
-             <NuxtLink to="/employees">
-                Employees
+                <img src="~/assets/StormLogo.png" class="nav-wrapper__logo">
             </NuxtLink>
         </div>
         <div class="app-bar__menu">
@@ -17,6 +14,13 @@
                     </v-avatar>
                 </template>
                 <v-list>
+                    <v-list-item>
+                        <v-list-item-title>
+                            <NuxtLink v-if="$store.state.auth" to="/employees" class="menu__item">
+                                Employees
+                            </NuxtLink>
+                        </v-list-item-title>
+                     </v-list-item>
                     <v-list-item>
                         <v-list-item-title @click="logout">Logout</v-list-item-title>
                     </v-list-item>
@@ -44,13 +48,11 @@ export default {
         attrs: null
     }),
     methods: {
-      test() {
-          console.log(this, this.$store)
-      },
       toggleModal() {
           this.isModalOpen = !this.isModalOpen
       },
       logout () {
+        this.$router.push('/');
         Cookie.remove('auth')
         this.$store.commit('setAuth', null)
       }
@@ -70,8 +72,20 @@ export default {
         justify-content: space-between;
     }
 
-    &__logo {
-        width: 200px;
+
+    &__nav-wrapper {
+        display: flex;
+        align-items: center;
+
+        &__logo {
+            width: 170px;
+        }
+    }
+    .app-bar__menu {
+
+        .menu__item {
+            cursor: pointer;
+        }
     }
 
     .app-bar__modal {

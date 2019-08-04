@@ -17,15 +17,7 @@ export default {
     components: {
         Footer,
         Header
-    },
-  methods: {
-      test() {
-          console.log(this, this.$store)
-      }
-  },
-  data: () => ({
-      drawer: null,
-    }),
+    }
 }
 </script>
 
@@ -40,7 +32,17 @@ export default {
     }
 }
 
+.global-button__secondary {
+    color: $white;
+    background: green;
+
+    :hover {
+        color: $red;
+    }
+}
+
 a {
+    color: unset;
     text-decoration: none;
 }
 
