@@ -39,14 +39,15 @@
                 v-model="personData.departments"
                 :items="$store.state.departments"
                 label="Departments"
-                 item-text="description"
+                item-text="description"
                 multiple
+                return-object
             />
             <v-select
                 v-model="personData.isDeleted"
-                :rules="[v => !!v || 'Item is required']"
                 label="isDeleted"
-                :items="['Active', 'Deleted']"
+                :items="[{ label: 'Active', value: false }, { label: 'Deleted', value: true }]"
+                item-text="label"
                 required
             />
 
@@ -88,13 +89,10 @@ export default {
                 v => !!v || 'Field is required',
                 v => (v && v.length <= 10) || 'Must be less than 10 characters',
             ],
-            email: '',
             emailRules: [
                 v => !!v || 'E-mail is required',
                 v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
             ],
-            select: null,
-            checkbox: false,
         }
     },
     beforeMount() {
